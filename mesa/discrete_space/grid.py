@@ -113,10 +113,6 @@ class Grid(DiscreteSpace[T]):
         # Track which property layers are read-only so the constraint survives
         # pickling and deepcopy (see __getstate__/__setstate__).
         self._read_only_layers: set[str] = set()
-        self._empty_cell_count = math.prod(self.dimensions)
-        self._empty_cells: list[T] = []
-        self._empty_cell_indices: dict[tuple[int, ...], int] = {}
-        self._maintain_empty_cells = False
 
         # we register the pickle_gridcell helper function
         copyreg.pickle(self.cell_klass, pickle_gridcell)
